@@ -1,0 +1,13 @@
+{
+    "files.associations": {
+        "*.rmd": "markdown",
+        "iostream": "cpp",
+        "deque": "cpp",
+        "random": "cpp",
+        "ios": "cpp",
+        "vector": "cpp",
+        "__config": "cpp",
+        "iosfwd": "cpp",
+        "algorithm": "cpp"
+    }
+}
