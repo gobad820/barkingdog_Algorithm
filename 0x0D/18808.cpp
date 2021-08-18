@@ -1,71 +1,59 @@
 #include <bits/stdc++.h>
 using namespace std;
 #define endl "\n"
+int n, m, k, r, c;
+int board[50][50];
+int stckr[15][15];
 
-int n, m, k;
-int sticker[15][15];
-int board1[45][45];
-int board2[45][45];
+bool pastable(int x, int y) {
+    for (int i = 0; i < r; i++)
+        for (int j = 0; j < c; j++)
+            if (board[i + x][j + y] == 1 && stckr[i][j] == 1) return false;
+    for (int i = 0; i < r; i++)
+        for (int j = 0; j < c; j++)
+            if (stckr[i][j] == 1) board[i + x][j + y] = 1;
+    return true;
+}
 
-bool OOB(int a, int b) { return a < 0 || b < 0 || a >= n || b >= m; }
+void rotate() {
+    int tmp[12][12];
+
+    for (int i = 0; i < r; i++)
+        for (int j = 0; j < c; j++) tmp[i][j] = stckr[i][j];
+
+    for (int i = 0; i < c; i++)  // 틀을 회전했으므로 행과 열이 서로 바뀜
+        for (int j = 0; j < r; j++) stckr[i][j] = tmp[r - 1 - j][i];
+
+    swap(r, c);
+}
+
 int main(int argc, char const *argv[]) {
     ios::sync_with_stdio(false);
     cin.tie(NULL);
     cin >> n >> m >> k;
-    for (int i = 0; i < k; i++) {
-        for (int a = 0; a < 15; a++) fill(sticker[a], sticker[a] + 15, 0);
-        for (int a = 0; a < 45; a++) {
-        }
-        int r, c;
+    while (k--) {
         cin >> r >> c;
-        for (int j = 0; j < r; j++) {
-            for (int k = 0; k < c; k++) {
-                cin >> sticker[j][k];
-            }
-        }
-        for (int j = 0; j < (n - r); j++) {
-            for (int k = 0; k < (m - c); k++) {
-                bool flag = 1;
-                for (int l = 0; l < r; l++) {
-                    for (int o = 0; l < c; o++) {
-                        int nl = l + j;
-                        int no = o + k;
-                        if (OOB(nl, no)) {
-                            l = r;
-                            flag = 0;
-                            for (int q = 0; q < 45; q++)
-                                fill(board2[q], board2[q] + 45, 0);
-                            break;
-                        }
-                        if (board1[nl][no] == 1 && sticker[l][o] == 1) {
-                            l = r;
-                            flag = 0;
-                            for (int q = 0; q < 45; q++)
-                                fill(board2[q], board2[q] + 45, 0);
-                            break;
-                        }
-                        board2[nl][no] = sticker[l][o];
+        for (int i = 0; i < r; i++)
+            for (int j = 0; j < c; j++) cin >> stckr[i][j];
+
+        for (int rot = 0; rot < 4; rot++) {
+            bool is_paste = false;  // 해당 스티커를 붙였는가?
+            for (int x = 0; x <= n - r; x++) {
+                if (is_paste) break;
+                for (int y = 0; y <= m - c; y++) {
+                    if (pastable(x, y)) {
+                        is_paste = true;
+                        break;
                     }
                 }
-                if (flag) {  // 스티커를 붙였으면
-                    for (int l = 0; l < n; l++) {
-                        for (int o = 0; o < m; o++) {
-                            board1[l][o] = board2[l][o];
-                        }
-                    }  // board1으로 복사 후
-                    j = n - r + 1;
-                    break;
-                    // 다음 스티커로 탈출
-                }
             }
+            if (is_paste) break;
+            rotate();
         }
     }
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < m; j++) cout << board1[i][j] << ' ';
-        cout << endl;
-    }
-    // 스티커를 회전 없이 붙일 때의 가능한 경우의 수를 구하는 것
-
-    // 스티커를 회전 없이 붙일 수 없을 때 회전을 하는 경우의 수를 구하는 것
+    int cnt = 0;
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < m; j++) cnt += board[i][j];
+    cout << cnt << '\n';
     return 0;
 }
