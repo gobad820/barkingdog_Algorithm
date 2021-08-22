@@ -64,6 +64,3 @@ int main(void) {
         for (int j = 0; j < m; j++) cnt += note[i][j];
     cout << cnt << '\n';
 }
-// © 2021 GitHub, Inc.Terms Privacy Security Status Docs Contact GitHub Pricing
-// API
-//                    Training Blog About
