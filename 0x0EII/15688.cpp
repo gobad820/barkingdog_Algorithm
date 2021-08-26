@@ -2,7 +2,7 @@
 using namespace std;
 
 int n;
-int numbers[2000005];
+int numbers[2000005]; // 절댓값 1,000,000
 
 int main(){
     ios::sync_with_stdio(0);
@@ -14,7 +14,7 @@ int main(){
         numbers[num+1000000]++;
     }
     for(int i = 0 ; i <= 2000000 ; i++){
-        while(numbers[i]--){
+        while(numbers[i]--){ // numbers[i]가 0이면 false
             cout << i-1000000 << "\n";
         }
     }
