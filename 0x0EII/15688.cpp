@@ -15,7 +15,7 @@ int main(){
     }
     for(int i = 0 ; i <= 2000000 ; i++){
         while(numbers[i]--){
-            cout << i-1000000 << endl;
+            cout << i-1000000 << "\n";
         }
     }
     return 0;
