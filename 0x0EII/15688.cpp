@@ -9,17 +9,13 @@ int main(){
     cin.tie(0);
     cin >> n;
     int num;
-    int maxnum = -1;
     for(int i = 0 ; i < n ; i++){
         cin >> num;
         numbers[num+1000000]++;
-        maxnum = max(maxnum,num);
     }
-    for(int i = 0 ; i <= maxnum ; i++){
-        if(numbers[i] == 0) continue;
-        while(numbers[i] > 0){
+    for(int i = 0 ; i <= 2000000 ; i++){
+        while(numbers[i]--){
             cout << i << endl;
-            numbers[i]--;
         }
     }
     return 0;
