@@ -1,63 +1,65 @@
-#include <bits/stdc++.h>
+#include<bits/stdc++.h>
 using namespace std;
-#define X first
-#define Y second
+#define endl "\n"
+
+typedef struct{
+	int x;
+	int y;
+}dots;
+
+vector<dots> v(100005);
+dots tmp[100005];
 int n;
-int arr[100005][2];
-int tmp[100005][2];
 
 void merge(int st, int en){
 	int mid = (st+en)/2;
 	int lidx = st; int ridx = mid;
-	for(int i = st; i < en ; i++){
-		// x 좌표 우선 비교 후 y 좌표 비교
-		if( lidx == mid) {
-			tmp[i][0] = arr[ridx][0];
-			tmp[i][1] = arr[ridx++][1];
+	for(int i = st ; i < en ; i++){
+		if(lidx == mid){
+			tmp[i].x = v[ridx].x;
+			tmp[i].y = v[ridx++].y;
 		}
 		else if(ridx == en){
-			tmp[i][0] = arr[lidx][0];
-			tmp[i][1] = arr[lidx++][1];
+			tmp[i].x = v[lidx].x;
+			tmp[i].y = v[lidx++].y;
 		}
-		else if(arr[lidx][0] == arr[ridx][0]){
-			if(arr[lidx][1] <= arr[ridx][1]){
-				tmp[i][0] = arr[lidx][0];
-				tmp[i][1] = arr[lidx++][1];
+		else if(v[lidx].x == v[ridx].x){
+			if(v[lidx].y <= v[ridx].y){
+				tmp[i].x = v[lidx].x;
+				tmp[i].y = v[lidx++].y;
 			}
 			else{
-				tmp[i][0] = arr[ridx][0];
-				tmp[i][1] = arr[ridx++][1];
+				tmp[i].x = v[ridx].x;
+				tmp[i].y = v[ridx++].y;
 			}
 		}
-		else if(arr[lidx][0] < arr[ridx][0]){
-			tmp[i][0] = arr[lidx][0];
-			tmp[i][1] = arr[lidx++][1];
+		else if(v[lidx].x < v[ridx].x){
+			tmp[i].x = v[lidx].x;
+			tmp[i].y = v[lidx++].y;
 		}
 		else{
-			tmp[i][0] = arr[ridx][0];
-			tmp[i][1] = arr[ridx++][1];
+			tmp[i].x = v[ridx].x;
+			tmp[i].y = v[ridx++].y;
 		}
 	}
 	for(int i = st ; i < en ; i++){
-		arr[i][0] = tmp[i][0];
-		arr[i][1] = tmp[i][1];
+		v[i].x = tmp[i].x;
+		v[i].y = tmp[i].y;
 	}
 }
 void mergeSort(int st, int en){
-	if(st+1 == en) return;
+	if(st + 1 == en) return;
 	int mid = (st+en)/2;
 	mergeSort(st,mid);
 	mergeSort(mid,en);
 	merge(st,en);
 }
-int main(int argc, const char *argv[]){
-	ios::sync_with_stdio(false);
-	cin.tie(NULL);
+int main(){
+	ios::sync_with_stdio(0);
+	cin.tie(0);
 	cin >> n;
-	int a,b;
-	for(int i = 0 ; i < n ; i++) cin >> arr[i][0] >> arr[i][1];
+	for(int i = 0 ; i < n ; i++) cin >> v[i].x >> v[i].y;
 	mergeSort(0,n);
-	for(int i = 0 ; i < n ; i++) cout << arr[i][0] << ' ' << arr[i][1] << endl;
+	for(int i = 0; i < n; i++) cout << v[i].x << ' ' << v[i].y << endl;
 	return 0;
 }
-
