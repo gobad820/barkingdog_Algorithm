@@ -39,4 +39,3 @@ int main(){
     for(auto i : stud) cout << get<0>(i) << endl;
     return 0;
 }
-
