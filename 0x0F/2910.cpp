@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 #include <bits/stdc++.h>
 using namespace std;
 #define endl "\n"
@@ -14,8 +13,6 @@ int main(int argc, const char *argv[]){
 	for(int i = 0 ; i < n ; i++) cout << nums[i] << ' ';
 	return 0;
 }
-
-=======
 #include<bits/stdc++.h>
 using namespace std;
 #define endl "\n"
@@ -42,4 +39,3 @@ int main(){
     for(int i = 0 ; i < n ; i++) cout << vec[i].X <<  ' ' << endl;
     // c = maximum of numbers
 }
->>>>>>> aae145b5c5a4bc67a77faf1ea99cb704229efed8
