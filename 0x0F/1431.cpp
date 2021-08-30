@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
+#define endl "\n"
 int n;
 // 1순위 길이
 // 2순위 숫자인 것만 더해서 수의 총 합
