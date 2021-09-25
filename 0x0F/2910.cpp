@@ -1,18 +1,3 @@
-#include <bits/stdc++.h>
-using namespace std;
-#define endl "\n"
-int n,c;
-int nums[1005];
-vector<int> order;
-int main(int argc, const char *argv[]){
-	ios::sync_with_stdio(false);
-	cin.tie(NULL);
-	cin >> n >> c;
-	for(int i = 0 ; i < n ; i++) cin >> nums[i];
-	sort(nums,nums+n);
-	for(int i = 0 ; i < n ; i++) cout << nums[i] << ' ';
-	return 0;
-}
 #include<bits/stdc++.h>
 using namespace std;
 #define endl "\n"
@@ -21,8 +6,15 @@ using namespace std;
 int n,c;
 int arr[1005];
 vector<pair<int ,int> > vec;
+vector<tuple<int, int, int> > nums;
+// 숫자 빈도 등장순서
 bool cmp(const pair<int, int> &a, const pair<int, int> &b){
     return a.Y > b.Y;
+}
+bool cmp2(const tuple<int, int, int> &a, const tuple<int, int, int> &b){
+	if(get<1>(a) == get<1>(b))
+		return get<2>(a) < get<2>(b);
+	return get<1>(a) < get<2>(b);
 }
 int main(){
     ios::sync_with_stdio(0);
@@ -34,8 +26,16 @@ int main(){
         cin >> arr[i];
         arr2[arr[i]]++;
     }
-    for(int i = 0 ; i < n ; i++) vec.push_back({arr[i],arr2[arr[i]]});
-    stable_sort(vec.begin(),vec.end(),cmp);
-    for(int i = 0 ; i < n ; i++) cout << vec[i].X <<  ' ' << endl;
-    // c = maximum of numbers
+	for(int i = 1 ; i <= c ; i++){
+		cout << arr2[i] << endl;
+	}
+    for(int i = 0; i < n ; i++) {
+		nums.emplace_back(arr[i],arr2[arr[i]],i);
+	}
+	stable_sort(nums.begin(),nums.end(),cmp2);
+    for(auto i : nums){
+		cout << get<0>(i);
+	}
+	return 0;
+			// c = maximum of numbers
 }

@@ -13,7 +13,8 @@
             "stopAtEntry": true,
             "cwd": "${workspaceFolder}",
             "environment": [],
-            "externalConsole": true,
+            "console" : "internalConsole",
+            // "externalConsole": true,
             "MIMode": "lldb",
             "preLaunchTask": "clang++ build active file"
         }

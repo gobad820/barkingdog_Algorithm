@@ -6,8 +6,6 @@
         "random": "cpp",
         "ios": "cpp",
         "vector": "cpp",
-        "__config": "cpp",
-        "iosfwd": "cpp",
-        "algorithm": "cpp"
+        "__config": "cpp"
     }
 }

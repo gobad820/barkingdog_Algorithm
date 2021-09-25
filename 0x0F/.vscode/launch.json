@@ -11,9 +11,11 @@
             "program": "${fileDirname}/${fileBasenameNoExtension}",
             "args": [],
             "stopAtEntry": true,
+            "externalConsole": true,
+            "terminal" : "external",
+            "console" : "externalTermianl",
             "cwd": "${workspaceFolder}",
             "environment": [],
-            "externalConsole": true,
             "MIMode": "lldb",
             "preLaunchTask": "clang++ build active file"
         }
