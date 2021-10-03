@@ -16,7 +16,6 @@
             "externalConsole": true,
             "MIMode": "lldb",
             "preLaunchTask": "clang++ build active file",
-            "console": "externalTerminal"
         }
     ]
 }

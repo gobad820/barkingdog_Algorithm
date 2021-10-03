@@ -10,13 +10,16 @@
             "request": "launch",
             "program": "${fileDirname}/${fileBasenameNoExtension}",
             "args": [],
-            "stopAtEntry": true,
+            "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],
-            "console" : "internalConsole",
-            // "externalConsole": true,
+            // "console" : "internalConsole"
+            "externalConsole": true,
             "MIMode": "lldb",
-            "preLaunchTask": "clang++ build active file"
+            "preLaunchTask": "clang++ build active file",
+            "osx": {
+                "MIDebuggerPath": "/Applications/Xcode.app/Contents/Developer/usr/bin/lldb-mi"
+            }
         }
     ]
 }
